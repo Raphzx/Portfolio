@@ -6,7 +6,12 @@
     <meta name="description" content="<?= SITE['description'] ?>">
     <meta name="author" content="<?= SITE['author'] ?>">
     <title><?= SITE['title'] ?></title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='1.5'><path d='M12 3C7 3 3 7 3 12c0 3 1.5 5.5 4 7l1-2c1.5 1 3 1.5 4 1.5s2.5-.5 4-1.5l1 2c2.5-1.5 4-4 4-7 0-5-4-9-9-9z'/><circle cx='8.5' cy='10' r='1.5' fill='%2338bdf8' opacity='0.8'/><circle cx='15.5' cy='10' r='1.5' fill='%2338bdf8' opacity='0.8'/></svg>">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/logo.svg">
+    <meta property="og:title" content="<?= SITE['title'] ?>">
+    <meta property="og:description" content="<?= SITE['description'] ?>">
+    <meta property="og:image" content="https://raphzx.site.je/assets/logo/logo.svg">
+    <meta property="og:url" content="https://raphzx.site.je/">
+    <meta property="og:type" content="website">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
