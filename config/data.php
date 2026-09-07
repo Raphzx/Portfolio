@@ -67,57 +67,6 @@ define('SKILLS', [
     ],
 ]);
 
-define('PROJECTS', [
-    'tag'     => 'My Work',
-    'heading' => 'Featured Projects',
-    'items' => [
-        [
-            'title'     => 'PointTrackID',
-            'desc'      => 'PointTrackID is a web-based website to record violations committed by school students.',
-            'tags'      => ['HTML5 & CSS3', 'Tailwind CSS', 'MySql', 'mPDF'],
-            'gradient'  => 'from-blue-500/20 to-cyan-500/20',
-            'icon_path' => 'assets/img/pointtrackid.png',
-            'demo_url'   => 'https://pointtrackid.site.je/',
-            'source_url' => 'https://github.com/Raphzx/PointTrack.ID'
-        ],
-        [
-            'title'     => 'Coming Soon',
-            'desc'      => 'Coming Soon',
-            'tags'      => ['Soon'],
-            'gradient'  => 'from-purple-500/20 to-blue-500/20',
-            'icon_path' => 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
-            ],
-        [
-            'title'     => 'Coming Soon',
-            'desc'      => 'Coming Soon',
-            'tags'      => ['Soon'],
-            'gradient'  => 'from-cyan-500/20 to-teal-500/20',
-            'icon_path' => 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
-            ],
-        [
-            'title'     => 'Coming Soon',
-            'desc'      => 'Coming Soon',
-            'tags'      => ['Soon'],
-            'gradient'  => 'from-emerald-500/20 to-blue-500/20',
-            'icon_path' => 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
-        ],
-        [
-            'title'     => 'Coming Soon',
-            'desc'      => 'Coming Soon',
-            'tags'      => ['Soon'],
-            'gradient'  => 'from-pink-500/20 to-blue-500/20',
-            'icon_path' => 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
-            ],
-        [
-            'title'     => 'Coming Soon',
-            'desc'      => 'Coming Soon',
-            'tags'      => ['Soon'],
-            'gradient'  => 'from-amber-500/20 to-orange-500/20',
-            'icon_path' => 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
-            ],
-    ],
-]);
-
 define('CONTACT', [
     'tag'       => 'Get In Touch',
     'heading'   => 'Contact Me',

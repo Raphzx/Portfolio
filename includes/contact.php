@@ -54,7 +54,7 @@
             </div>
 
             <div class="md:col-span-3 reveal">
-                <form class="glass-card rounded-2xl p-8 space-y-6" action="includes/send.php" method="POST">
+                <form id="portfolioForm" class="glass-card rounded-2xl p-8 space-y-6">
 
                     <div class="grid sm:grid-cols-2 gap-6">
                         <div>
@@ -101,4 +101,53 @@
             </div>
         </div>
     </div>
+<script>
+    document.getElementById("portfolioForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const btn = this.querySelector('button[type="submit"]');
+        const originalText = btn.innerText;
+        btn.innerText = "SENDING...";
+        btn.disabled = true;
+
+        const name = this.querySelector('input[name="name"]').value;
+        const email = this.querySelector('input[name="email"]').value;
+        const subject = this.querySelector('input[name="subject"]').value;
+        const message = this.querySelector('textarea[name="message"]').value;
+
+        const webhookUrl = "https://discord.com/api/webhooks/1544869646057078807/w_tYW4f2qi8MjaG82XeFwAXlqrw1rA7sNwyNVRNqDdmuKWwE_Pke35i33UxXxotKgMxZ";
+
+        const msg = "📩 **Pesan Baru dari Portfolio!**\n" +
+                    "**Nama:** " + name + "\n" +
+                    "**Email:** " + email + "\n" +
+                    "**Subjek:** " + subject + "\n" +
+                    "**Pesan:** " + message;
+
+        const payload = JSON.stringify({
+            content: msg,
+            username: "Portfolio Notification"
+        });
+
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payload
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Pesan berhasil dikirim!');
+                document.getElementById("portfolioForm").reset();
+            } else {
+                alert('Gagal mengirim pesan. Status Error: ' + response.status);
+            }
+        })
+        .catch(error => {
+            alert('Terjadi kesalahan jaringan/koneksi.');
+        })
+        .finally(() => {
+            btn.innerText = originalText;
+            btn.disabled = false;
+        });
+    });
+    </script>
 </section>

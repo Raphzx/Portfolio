@@ -1,21 +1,10 @@
-/**
- * Nightwing Portfolio - Main JavaScript
- */
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    // =============================
-    // Hero Entrance Animations
-    // =============================
     document.querySelectorAll('#hero .animate-slide-up, #hero .animate-fade-in').forEach(el => {
         el.style.opacity = '0';
         setTimeout(() => { el.style.opacity = '1'; }, 100);
     });
 
-
-    // =============================
-    // Navbar Scroll Effect
-    // =============================
     const navbar = document.getElementById('navbar');
 
     window.addEventListener('scroll', () => {
@@ -34,10 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
-    // =============================
-    // Mobile Menu Toggle
-    // =============================
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu    = document.getElementById('mobileMenu');
 
@@ -51,10 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
-    // =============================
-    // Scroll Reveal (IntersectionObserver)
-    // =============================
     const revealElements = document.querySelectorAll('.reveal');
 
     const revealObserver = new IntersectionObserver((entries) => {
@@ -71,10 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-
-    // =============================
-    // Skill Bar Animation
-    // =============================
     const skillBars = document.querySelectorAll('.skill-bar-fill');
 
     const skillObserver = new IntersectionObserver((entries) => {
@@ -89,10 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     skillBars.forEach(bar => skillObserver.observe(bar));
 
-
-    // =============================
-    // 3D Magnetic Tilt on Cards
-    // =============================
     document.querySelectorAll('.project-card, .glass-card').forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect    = card.getBoundingClientRect();
@@ -113,10 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
-    // =============================
-    // Smooth Scroll for Anchor Links
-    // =============================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -126,34 +95,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-
-    // =============================
-    // Contact Form Handler
-    // =============================
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const btn          = this.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
-
-            btn.innerHTML = '<span class="animate-pulse">Sending...</span>';
-            btn.disabled  = true;
-
-            setTimeout(() => {
-                btn.innerHTML = '\u2713 Message Sent!';
-                btn.classList.add('bg-neon-blue/20', 'border', 'border-neon-blue/30');
-
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.disabled  = false;
-                    btn.classList.remove('bg-neon-blue/20', 'border', 'border-neon-blue/30');
-                    contactForm.reset();
-                }, 2000);
-            }, 1500);
-        });
-    }
 
 });
