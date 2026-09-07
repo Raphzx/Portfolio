@@ -1,5 +1,4 @@
 <?php
-// Tampilkan error PHP untuk proses debugging di hosting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -9,7 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $subject = htmlspecialchars($_POST['subject'] ?? '');
     $message = htmlspecialchars($_POST['message'] ?? '');
 
-    // Pastikan URL webhook benar dan aktif
     $webhookurl = "https://discord.com/api/webhooks/1544869646057078807/w_tYW4f2qi8MjaG82XeFwAXlqrw1rA7sNwyNVRNqDdmuKWwE_Pke35i33UxXxotKgMxZ";
 
     $msg = "📩 **Pesan Baru dari Portfolio!**\n"
@@ -25,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $ch = curl_init($webhookurl);
     
-    // Cek apakah fungsi cURL diizinkan oleh hosting
     if ($ch === false) {
         die('Error: Gagal inisialisasi cURL. Ekstensi cURL dinonaktifkan oleh provider hosting Anda.');
     }
@@ -37,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     
-    // Matikan verifikasi SSL secara keseluruhan untuk bypass limitasi shared hosting
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0); 
 
@@ -46,12 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     curl_close($ch);
 
-    // Pengecekan hasil eksekusi cURL
     if ($curl_error) {
-        // Jika gagal karena diblokir hosting atau masalah jaringan, tampilkan pesan error aslinya
         echo "<b>Gagal mengirim webhook!</b><br>Detail Error cURL: " . $curl_error;
     } else {
-        // Jika berhasil, jalankan pop-up alert JS
         echo "<script>
                 alert('Pesan berhasil dikirim!');
                 window.location.href = '../index.php#contact';
