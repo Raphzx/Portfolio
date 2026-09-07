@@ -5,7 +5,7 @@
             <div class="w-10 h-10 rounded-full border border-neon-blue/30 flex items-center justify-center bg-nightwing-900/80 backdrop-blur-sm group-hover:border-neon-blue/60 group-hover:shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all duration-300">
                 <img src="assets/img/Profile.jpg" alt="Profile" class="w-full h-full object-cover rounded-full" />
             </div>
-            <span class="font-orbitron text-lg font-bold tracking-wider gradient-text hidden sm:block">Raphzx</span>
+            <span class="font-orbitron text-lg font-bold tracking-wider gradient-text"><?= htmlspecialchars(SITE['author']) ?></span>
         </a>
 
         <div class="flex items-center gap-8">

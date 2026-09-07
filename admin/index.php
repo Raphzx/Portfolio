@@ -4,6 +4,8 @@ require_once __DIR__ . '/header.php';
 $totalProjects = (int)db()->query("SELECT COUNT(*) FROM projects")->fetchColumn();
 $withDemo      = (int)db()->query("SELECT COUNT(*) FROM projects WHERE demo_url IS NOT NULL AND demo_url <> ''")->fetchColumn();
 $withSource    = (int)db()->query("SELECT COUNT(*) FROM projects WHERE source_url IS NOT NULL AND source_url <> ''")->fetchColumn();
+$totalSkills   = (int)db()->query("SELECT COUNT(*) FROM skills")->fetchColumn();
+$totalSocials  = (int)db()->query("SELECT COUNT(*) FROM contact_socials")->fetchColumn();
 $recent        = db()->query("SELECT title, updated_at FROM projects ORDER BY updated_at DESC LIMIT 5")->fetchAll();
 ?>
 
@@ -73,6 +75,12 @@ $recent        = db()->query("SELECT title, updated_at FROM projects ORDER BY up
         <a href="project_form" class="neon-btn inline-flex items-center gap-2 px-6 py-3 rounded-lg font-orbitron text-sm font-semibold tracking-widest uppercase text-neon-blue border border-neon-blue/30">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
             Tambah Project
+        </a>
+        <a href="skill_form" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-neon-blue/20 text-gray-400 hover:text-neon-blue transition-colors font-orbitron text-sm font-semibold tracking-widest uppercase">
+            Tambah Skill
+        </a>
+        <a href="site_settings" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-neon-blue/20 text-gray-400 hover:text-neon-blue transition-colors font-orbitron text-sm font-semibold tracking-widest uppercase">
+            Pengaturan Situs
         </a>
         <a href="../" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-neon-blue/20 text-gray-400 hover:text-neon-blue transition-colors font-orbitron text-sm font-semibold tracking-widest uppercase">
             Buka Portfolio
