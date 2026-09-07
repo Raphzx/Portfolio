@@ -5,7 +5,7 @@ require_auth();
 
 $id = (int)($_GET['id'] ?? 0);
 if ($id <= 0) {
-    header('Location: projects.php');
+    header('Location: projects');
     exit;
 }
 
@@ -14,7 +14,7 @@ $stmt->execute(['id' => $id]);
 $project = $stmt->fetch();
 
 if (!$project) {
-    header('Location: projects.php');
+    header('Location: projects');
     exit;
 }
 
@@ -29,5 +29,5 @@ if (preg_match('#^assets/img/projects/[a-zA-Z0-9._-]+\.(png|jpg|jpeg|gif|webp)$#
 $stmt = db()->prepare("DELETE FROM projects WHERE id = :id");
 $stmt->execute(['id' => $id]);
 
-header('Location: projects.php?deleted=1');
+header('Location: projects?deleted=1');
 exit;

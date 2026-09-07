@@ -51,16 +51,16 @@ $recent        = db()->query("SELECT title, updated_at FROM projects ORDER BY up
 <div class="glass-card rounded-2xl p-6 mb-8">
     <div class="flex items-center justify-between mb-4">
         <h2 class="font-orbitron text-lg font-bold text-white">Proyek Terbaru</h2>
-        <a href="projects.php" class="text-neon-blue hover:text-cyan-400 text-sm transition-colors">Lihat semua &rarr;</a>
+        <a href="projects" class="text-neon-blue hover:text-cyan-400 text-sm transition-colors">Lihat semua &rarr;</a>
     </div>
     <?php if (empty($recent)): ?>
-        <p class="text-gray-500 text-sm">Belum ada proyek. <a href="project_form.php" class="text-neon-blue">Tambah proyek pertama &rarr;</a></p>
+        <p class="text-gray-500 text-sm">Belum ada proyek. <a href="project_form" class="text-neon-blue">Tambah proyek pertama &rarr;</a></p>
     <?php else: ?>
         <div class="space-y-2">
             <?php foreach ($recent as $r): ?>
-                <div class="flex items-center justify-between px-4 py-3 rounded-lg bg-nightwing-900/40 border border-neon-blue/5 table-row">
-                    <span class="text-gray-300 text-sm"><?= htmlspecialchars($r['title']) ?></span>
-                    <span class="text-gray-600 text-xs"><?= htmlspecialchars(date('d M Y, H:i', strtotime($r['updated_at']))) ?></span>
+                <div class="flex items-center justify-between gap-4 px-4 py-3 rounded-lg bg-nightwing-900/40 border border-neon-blue/5 table-row">
+                    <span class="text-gray-300 text-sm min-w-0 truncate"><?= htmlspecialchars($r['title']) ?></span>
+                    <span class="text-gray-600 text-xs shrink-0 whitespace-nowrap"><?= htmlspecialchars(date('d M Y, H:i', strtotime($r['updated_at']))) ?></span>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -70,11 +70,11 @@ $recent        = db()->query("SELECT title, updated_at FROM projects ORDER BY up
 <div class="glass-card rounded-2xl p-6">
     <h2 class="font-orbitron text-lg font-bold text-white mb-4">Aksi Cepat</h2>
     <div class="flex flex-wrap gap-4">
-        <a href="project_form.php" class="neon-btn inline-flex items-center gap-2 px-6 py-3 rounded-lg font-orbitron text-sm font-semibold tracking-widest uppercase text-neon-blue border border-neon-blue/30">
+        <a href="project_form" class="neon-btn inline-flex items-center gap-2 px-6 py-3 rounded-lg font-orbitron text-sm font-semibold tracking-widest uppercase text-neon-blue border border-neon-blue/30">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
             Tambah Project
         </a>
-        <a href="../index.php" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-neon-blue/20 text-gray-400 hover:text-neon-blue transition-colors font-orbitron text-sm font-semibold tracking-widest uppercase">
+        <a href="../" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-neon-blue/20 text-gray-400 hover:text-neon-blue transition-colors font-orbitron text-sm font-semibold tracking-widest uppercase">
             Buka Portfolio
         </a>
     </div>

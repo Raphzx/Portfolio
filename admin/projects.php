@@ -9,7 +9,7 @@ $projects = db()->query("SELECT * FROM projects ORDER BY sort_order ASC, id ASC"
         <h1 class="font-orbitron text-2xl md:text-3xl font-bold text-white mb-2">Projects</h1>
         <p class="text-gray-500 text-sm">Kelola daftar proyek portfolio Anda.</p>
     </div>
-    <a href="project_form.php" class="neon-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-orbitron text-sm font-semibold tracking-widest uppercase text-neon-blue border border-neon-blue/30">
+    <a href="project_form" class="neon-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-orbitron text-sm font-semibold tracking-widest uppercase text-neon-blue border border-neon-blue/30">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
         Tambah Project
     </a>
@@ -29,7 +29,7 @@ $projects = db()->query("SELECT * FROM projects ORDER BY sort_order ASC, id ASC"
     <?php if (empty($projects)): ?>
         <div class="p-10 text-center">
             <p class="text-gray-500 mb-4">Belum ada proyek.</p>
-            <a href="project_form.php" class="text-neon-blue hover:text-cyan-400 transition-colors">Tambah proyek pertama &rarr;</a>
+            <a href="project_form" class="text-neon-blue hover:text-cyan-400 transition-colors">Tambah proyek pertama &rarr;</a>
         </div>
     <?php else: ?>
         <div class="overflow-x-auto">
@@ -94,7 +94,7 @@ $projects = db()->query("SELECT * FROM projects ORDER BY sort_order ASC, id ASC"
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center justify-end gap-2">
-                                    <a href="project_form.php?id=<?= (int)$p['id'] ?>" class="px-3 py-1.5 rounded-lg bg-neon-blue/10 border border-neon-blue/20 text-neon-blue hover:bg-neon-blue/20 transition-colors text-xs font-medium">Edit</a>
+                                    <a href="project_form?id=<?= (int)$p['id'] ?>" class="px-3 py-1.5 rounded-lg bg-neon-blue/10 border border-neon-blue/20 text-neon-blue hover:bg-neon-blue/20 transition-colors text-xs font-medium">Edit</a>
                                     <a href="#" onclick="confirmDelete(<?= (int)$p['id'] ?>, '<?= htmlspecialchars(addslashes($p['title'])) ?>')" class="px-3 py-1.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-colors text-xs font-medium">Hapus</a>
                                 </div>
                             </td>
@@ -109,7 +109,7 @@ $projects = db()->query("SELECT * FROM projects ORDER BY sort_order ASC, id ASC"
 <script>
 function confirmDelete(id, title) {
     if (confirm('Yakin ingin menghapus project "' + title + '"? Aksi ini tidak bisa dibatalkan.')) {
-        window.location.href = 'project_delete.php?id=' + id;
+        window.location.href = 'project_delete?id=' + id;
     }
 }
 </script>

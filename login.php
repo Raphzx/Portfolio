@@ -2,7 +2,7 @@
 require_once __DIR__ . '/config/auth.php';
 
 if (is_logged_in()) {
-    header('Location: admin/index.php');
+    header('Location: admin/');
     exit;
 }
 
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_regenerate_id(true);
             $_SESSION['user_id']   = (int)$user['id'];
             $_SESSION['username']  = $user['username'];
-            header('Location: admin/index.php');
+            header('Location: admin/');
             exit;
         } else {
             $error = 'Username atau password salah.';
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="text-center mt-8">
-            <a href="index.php" class="text-gray-500 hover:text-neon-blue transition-colors text-sm">&larr; Kembali ke portfolio</a>
+            <a href="./" class="text-gray-500 hover:text-neon-blue transition-colors text-sm">&larr; Kembali ke portfolio</a>
         </div>
     </div>
 </body>

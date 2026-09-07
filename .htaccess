@@ -1,0 +1,21 @@
+# Pretty URLs: /login -> login.php, /admin/projects -> admin/projects.php
+Options -MultiViews
+RewriteEngine On
+
+# 1) Redirect /index.php to the site root
+RewriteCond %{THE_REQUEST} \s/+index\.php[\s?] [NC]
+RewriteRule ^index\.php$ / [R=301,L]
+
+# 2) Redirect /<dir>/index.php to that directory
+RewriteCond %{THE_REQUEST} \s/(.+/)index\.php[\s?] [NC]
+RewriteRule ^(.+/)index\.php$ /%1 [R=301,L]
+
+# 3) Redirect any other .php URL to its extensionless version
+RewriteCond %{THE_REQUEST} \s/(.+?)\.php[\s?] [NC]
+RewriteRule ^(.+?)\.php$ /%1 [R=301,L]
+
+# 4) Internally map pretty URLs back to the matching .php file
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]

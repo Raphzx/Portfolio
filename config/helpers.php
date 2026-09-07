@@ -8,7 +8,8 @@ function is_logged_in(): bool
 function require_auth(): void
 {
     if (!is_logged_in()) {
-        header('Location: ' . dirname($_SERVER['SCRIPT_NAME']) . '/login.php');
+        $base = rtrim(str_replace('\\', '/', dirname(dirname($_SERVER['SCRIPT_NAME']))), '/');
+        header('Location: ' . $base . '/login');
         exit;
     }
 }

@@ -11,7 +11,7 @@ if ($editId > 0) {
     $stmt->execute(['id' => $editId]);
     $project = $stmt->fetch();
     if (!$project) {
-        header('Location: projects.php');
+        header('Location: projects');
         exit;
     }
 }
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $demoUrl     = trim($_POST['demo_url'] ?? '');
     $sourceUrl   = trim($_POST['source_url'] ?? '');
     $sortOrder   = max(0, (int)($_POST['sort_order'] ?? 0));
-    $errorUrl    = $id > 0 ? "project_form.php?id=$id&error=" : 'project_form.php?error=';
+    $errorUrl    = $id > 0 ? "project_form?id=$id&error=" : 'project_form?error=';
 
     if ($title === '' || $description === '') {
         header('Location: ' . $errorUrl . urlencode('Judul dan deskripsi wajib diisi.'));
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'gradient' => $gradient, 'icon_path' => $iconPath, 'demo_url' => $demoUrl,
             'source_url' => $sourceUrl, 'sort_order' => $sortOrder, 'id' => $id,
         ]);
-        header('Location: projects.php?updated=1');
+        header('Location: projects?updated=1');
     } else {
         $stmt = db()->prepare("INSERT INTO projects (title, description, tags, gradient, icon_path, demo_url, source_url, sort_order) VALUES (:title, :description, :tags, :gradient, :icon_path, :demo_url, :source_url, :sort_order)");
         $stmt->execute([
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'gradient' => $gradient, 'icon_path' => $iconPath, 'demo_url' => $demoUrl,
             'source_url' => $sourceUrl, 'sort_order' => $sortOrder,
         ]);
-        header('Location: projects.php?added=1');
+        header('Location: projects?added=1');
     }
     exit;
 }
@@ -253,7 +253,7 @@ require_once __DIR__ . '/header.php';
             <button type="submit" class="neon-btn flex-1 px-6 py-3 rounded-lg font-orbitron text-sm font-semibold tracking-widest uppercase text-neon-blue border border-neon-blue/30">
                 <?= $editId ? 'Simpan Perubahan' : 'Tambah Project' ?>
             </button>
-            <a href="projects.php" class="flex-1 px-6 py-3 rounded-lg border border-neon-blue/10 text-gray-400 hover:text-neon-blue transition-colors text-center font-orbitron text-sm font-semibold tracking-widest uppercase">
+            <a href="projects" class="flex-1 px-6 py-3 rounded-lg border border-neon-blue/10 text-gray-400 hover:text-neon-blue transition-colors text-center font-orbitron text-sm font-semibold tracking-widest uppercase">
                 Batal
             </a>
         </div>
