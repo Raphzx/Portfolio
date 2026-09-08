@@ -117,11 +117,11 @@
 
         const webhookUrl = "https://discord.com/api/webhooks/1544869646057078807/w_tYW4f2qi8MjaG82XeFwAXlqrw1rA7sNwyNVRNqDdmuKWwE_Pke35i33UxXxotKgMxZ";
 
-        const msg = "📩 **Pesan Baru dari Portfolio!**\n" +
-                    "**Nama:** " + name + "\n" +
+        const msg =                     "📩 **New Message from Portfolio!**\n" +
+                    "**Name:** " + name + "\n" +
                     "**Email:** " + email + "\n" +
-                    "**Subjek:** " + subject + "\n" +
-                    "**Pesan:** " + message;
+                    "**Subject:** " + subject + "\n" +
+                    "**Message:** " + message;
 
         const payload = JSON.stringify({
             content: msg,
@@ -135,14 +135,14 @@
         })
         .then(response => {
             if (response.ok) {
-                alert('Pesan berhasil dikirim!');
+                alert('Message sent successfully!');
                 document.getElementById("portfolioForm").reset();
             } else {
-                alert('Gagal mengirim pesan. Status Error: ' + response.status);
+                alert('Failed to send message. Error Status: ' + response.status);
             }
         })
         .catch(error => {
-            alert('Terjadi kesalahan jaringan/koneksi.');
+            alert('A network/connection error occurred.');
         })
         .finally(() => {
             btn.innerText = originalText;

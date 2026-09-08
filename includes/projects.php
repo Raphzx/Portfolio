@@ -23,7 +23,7 @@ try {
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php if (empty($projectItems)): ?>
                 <div class="col-span-full text-center py-16">
-                    <p class="text-gray-500">Belum ada project yang ditambahkan.</p>
+                    <p class="text-gray-500">No projects added yet.</p>
                 </div>
             <?php else: ?>
                 <?php foreach ($projectItems as $index => $project): ?>

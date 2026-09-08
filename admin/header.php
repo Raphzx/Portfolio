@@ -6,7 +6,7 @@ require_auth();
 $current_page = basename($_SERVER['SCRIPT_NAME']);
 ?>
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,7 +68,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
 <div class="flex min-h-screen">
 
     <div class="md:hidden fixed top-0 left-0 right-0 z-50 bg-nightwing-900/95 backdrop-blur-xl border-b border-neon-blue/10 px-4 py-3 flex items-center justify-between">
-        <button id="sidebarToggle" class="text-gray-400 hover:text-neon-blue transition-colors" aria-label="Buka menu">
+        <button id="sidebarToggle" class="text-gray-400 hover:text-neon-blue transition-colors" aria-label="Open menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
             </svg>
@@ -88,7 +88,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                 <h1 class="font-orbitron text-sm font-bold gradient-text">Admin Panel</h1>
                 <p class="text-gray-600 text-xs truncate"><?= htmlspecialchars($_SESSION['username']) ?></p>
             </div>
-            <button id="sidebarClose" class="md:hidden text-gray-500 hover:text-neon-blue transition-colors" aria-label="Tutup menu">
+            <button id="sidebarClose" class="md:hidden text-gray-500 hover:text-neon-blue transition-colors" aria-label="Close menu">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
@@ -99,10 +99,10 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
                 Dashboard
             </a>
-            <p class="px-4 pt-4 pb-1 text-gray-700 text-[10px] uppercase tracking-widest font-orbitron">Konten Dinamis</p>
+            <p class="px-4 pt-4 pb-1 text-gray-700 text-[10px] uppercase tracking-widest font-orbitron">Dynamic Content</p>
             <a href="site_settings" class="sidebar-link <?= $current_page === 'site_settings.php' ? 'active' : '' ?> flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-gray-400 font-medium">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/></svg>
-                Pengaturan Situs
+                Site Settings
             </a>
             <a href="hero_form" class="sidebar-link <?= $current_page === 'hero_form.php' ? 'active' : '' ?> flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-gray-400 font-medium">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>
@@ -127,11 +127,11 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
             </a>
             <a href="change_password" class="sidebar-link <?= $current_page === 'change_password.php' ? 'active' : '' ?> flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-gray-400 font-medium">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
-                Ubah Password
+                Change Password
             </a>
             <a href="../" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-gray-400 font-medium">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
-                Lihat Portfolio
+                View Portfolio
             </a>
             <a href="../logout" class="sidebar-link sidebar-link-logout flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/></svg>

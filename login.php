@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     if ($username === '' || $password === '') {
-        $error = 'Username dan password wajib diisi.';
+        $error = 'Username and password are required.';
     } else {
         $stmt = db()->prepare("SELECT id, username, password FROM users WHERE username = :username LIMIT 1");
         $stmt->execute(['username' => $username]);
@@ -26,13 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: admin/');
             exit;
         } else {
-            $error = 'Username atau password salah.';
+            $error = 'Invalid username or password.';
         }
     }
 }
 ?>
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </svg>
             </div>
             <h1 class="font-orbitron text-2xl font-bold gradient-text">Admin Login</h1>
-            <p class="text-gray-500 text-sm mt-2">Masuk untuk mengelola portfolio</p>
+            <p class="text-gray-500 text-sm mt-2">Sign in to manage your portfolio</p>
         </div>
 
         <div class="glass-card rounded-2xl p-8">
@@ -96,13 +96,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label class="block text-gray-400 text-sm font-medium mb-2">Username</label>
                     <input type="text" name="username" required
                            class="input-field w-full rounded-lg px-4 py-3 text-white placeholder-gray-600"
-                           placeholder="Masukkan username">
+                           placeholder="Enter username">
                 </div>
                 <div>
                     <label class="block text-gray-400 text-sm font-medium mb-2">Password</label>
                     <input type="password" name="password" required
                            class="input-field w-full rounded-lg px-4 py-3 text-white placeholder-gray-600"
-                           placeholder="Masukkan password">
+                           placeholder="Enter password">
                 </div>
                 <button type="submit"
                         class="neon-btn w-full py-3 rounded-lg font-orbitron text-sm font-semibold tracking-widest uppercase text-neon-blue border border-neon-blue/30">
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="text-center mt-8">
-            <a href="./" class="text-gray-500 hover:text-neon-blue transition-colors text-sm">&larr; Kembali ke portfolio</a>
+            <a href="./" class="text-gray-500 hover:text-neon-blue transition-colors text-sm">&larr; Back to portfolio</a>
         </div>
     </div>
 </body>

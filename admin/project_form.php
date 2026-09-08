@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errorUrl    = $id > 0 ? "project_form?id=$id&error=" : 'project_form?error=';
 
     if ($title === '' || $description === '') {
-        header('Location: ' . $errorUrl . urlencode('Judul dan deskripsi wajib diisi.'));
+        header('Location: ' . $errorUrl . urlencode('Title and description are required.'));
         exit;
     }
 
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($_FILES['icon_image']['name'])) {
             $newImage = upload_project_image($_FILES['icon_image']);
             if ($newImage === '') {
-                header('Location: ' . $errorUrl . urlencode('Gagal mengupload gambar. Format harus jpg/png/gif/webp dan maks 2MB.'));
+                header('Location: ' . $errorUrl . urlencode('Failed to upload image. Format must be jpg/png/gif/webp and max 2MB.'));
                 exit;
             }
         }
@@ -131,8 +131,8 @@ require_once __DIR__ . '/header.php';
 ?>
 
 <div class="mb-8">
-    <h1 class="font-orbitron text-2xl md:text-3xl font-bold text-white mb-2"><?= $editId ? 'Edit Project' : 'Tambah Project' ?></h1>
-    <p class="text-gray-500 text-sm"><?= $editId ? 'Perbarui detail proyek di bawah ini.' : 'Isi detail proyek baru untuk ditampilkan di portfolio.' ?></p>
+    <h1 class="font-orbitron text-2xl md:text-3xl font-bold text-white mb-2"><?= $editId ? 'Edit Project' : 'Add Project' ?></h1>
+    <p class="text-gray-500 text-sm"><?= $editId ? 'Update the project details below.' : 'Fill in the new project details to display in your portfolio.' ?></p>
 </div>
 
 <?php if (isset($_GET['error']) && $_GET['error'] !== ''): ?>
@@ -146,11 +146,11 @@ require_once __DIR__ . '/header.php';
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <label class="block text-gray-400 text-sm font-medium mb-2">Judul Project *</label>
+                <label class="block text-gray-400 text-sm font-medium mb-2">Project Title *</label>
                 <input type="text" name="title" required maxlength="255"
                        value="<?= htmlspecialchars($project['title'] ?? '') ?>"
                        class="input-field-admin w-full rounded-lg px-4 py-3 text-white placeholder-gray-600"
-                       placeholder="Contoh: PointTrackID">
+                       placeholder="e.g. PointTrackID">
             </div>
             <div>
                 <label class="block text-gray-400 text-sm font-medium mb-2">Sort Order</label>
@@ -158,15 +158,15 @@ require_once __DIR__ . '/header.php';
                        value="<?= (int)($project['sort_order'] ?? 0) ?>"
                        class="input-field-admin w-full rounded-lg px-4 py-3 text-white placeholder-gray-600"
                        placeholder="0">
-                <p class="text-gray-700 text-xs mt-1">Angka kecil tampil lebih dulu.</p>
+                <p class="text-gray-700 text-xs mt-1">Lower numbers appear first.</p>
             </div>
         </div>
 
         <div>
-            <label class="block text-gray-400 text-sm font-medium mb-2">Deskripsi *</label>
+            <label class="block text-gray-400 text-sm font-medium mb-2">Description *</label>
             <textarea name="description" required rows="4"
                       class="input-field-admin w-full rounded-lg px-4 py-3 text-white placeholder-gray-600 resize-none"
-                      placeholder="Jelaskan project Anda..."><?= htmlspecialchars($project['description'] ?? '') ?></textarea>
+                      placeholder="Describe your project..."><?= htmlspecialchars($project['description'] ?? '') ?></textarea>
         </div>
 
         <div>
@@ -174,12 +174,12 @@ require_once __DIR__ . '/header.php';
             <input type="text" name="tags" maxlength="500"
                    value="<?= htmlspecialchars(implode(', ', $tags)) ?>"
                    class="input-field-admin w-full rounded-lg px-4 py-3 text-white placeholder-gray-600"
-                   placeholder="Pisahkan dengan koma. Contoh: HTML5, CSS3, MySQL">
-            <p class="text-gray-700 text-xs mt-1">Pisahkan antar tag dengan koma (,).</p>
+                   placeholder="Separate with commas. e.g. HTML5, CSS3, MySQL">
+            <p class="text-gray-700 text-xs mt-1">Separate tags with commas (,).</p>
         </div>
 
         <div>
-            <label class="block text-gray-400 text-sm font-medium mb-2">Gradient Warna</label>
+            <label class="block text-gray-400 text-sm font-medium mb-2">Color Gradient</label>
             <select name="gradient" class="input-field-admin w-full rounded-lg px-4 py-3 text-white">
                 <?php foreach ($gradients as $g): ?>
                     <option value="<?= htmlspecialchars($g) ?>" <?= $gradient === $g ? 'selected' : '' ?>><?= $g ?></option>
@@ -193,11 +193,11 @@ require_once __DIR__ . '/header.php';
         </div>
 
         <div>
-            <label class="block text-gray-400 text-sm font-medium mb-3">Icon / Gambar</label>
+            <label class="block text-gray-400 text-sm font-medium mb-3">Icon / Image</label>
             <div class="flex gap-6 mb-4">
                 <label class="flex items-center gap-2 cursor-pointer">
                     <input type="radio" name="icon_type" value="image" <?= $isImage ? 'checked' : '' ?> class="text-neon-blue">
-                    <span class="text-gray-300 text-sm">Upload Gambar</span>
+                    <span class="text-gray-300 text-sm">Upload Image</span>
                 </label>
                 <label class="flex items-center gap-2 cursor-pointer">
                     <input type="radio" name="icon_type" value="svg" <?= !$isImage ? 'checked' : '' ?> class="text-neon-blue">
@@ -209,13 +209,13 @@ require_once __DIR__ . '/header.php';
                 <label class="flex flex-col items-center justify-center w-full h-40 rounded-xl border-2 border-dashed border-neon-blue/20 hover:border-neon-blue/40 transition-colors cursor-pointer bg-nightwing-900/40">
                     <input type="file" name="icon_image" id="iconImageInput" accept=".jpg,.jpeg,.png,.gif,.webp" class="hidden">
                     <svg class="w-8 h-8 text-neon-blue/50 mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
-                    <span class="text-gray-500 text-sm">Klik untuk upload gambar (jpg, png, gif, webp - maks 2MB)</span>
+                    <span class="text-gray-500 text-sm">Click to upload image (jpg, png, gif, webp - max 2MB)</span>
                 </label>
                 <p id="fileName" class="text-neon-blue text-xs font-medium hidden"></p>
                 <?php if ($editId > 0 && $isImage && $iconPath !== '' && preg_match('/\.(png|jpg|jpeg|gif|webp)$/i', $iconPath)): ?>
                     <div class="flex items-center gap-3">
                         <img src="../<?= htmlspecialchars($iconPath) ?>" alt="Current" class="w-16 h-16 rounded-lg object-cover border border-neon-blue/10">
-                        <span class="text-gray-600 text-xs">Gambar saat ini: <?= htmlspecialchars($iconPath) ?>. Upload untuk mengganti.</span>
+                        <span class="text-gray-600 text-xs">Current image: <?= htmlspecialchars($iconPath) ?>. Upload to replace.</span>
                     </div>
                 <?php endif; ?>
             </div>
@@ -224,10 +224,10 @@ require_once __DIR__ . '/header.php';
                 <label class="block text-gray-400 text-sm font-medium mb-2">SVG Path (viewBox 0 0 24 24)</label>
                 <textarea name="icon_svg" id="svgInputText" rows="3"
                           class="input-field-admin w-full rounded-lg px-4 py-3 text-white placeholder-gray-600 resize-none font-mono text-xs"
-                          placeholder="Paste SVG path di sini..."><?= !$isImage ? htmlspecialchars($iconPath) : '' ?></textarea>
+                          placeholder="Paste SVG path here..."><?= !$isImage ? htmlspecialchars($iconPath) : '' ?></textarea>
                 <div class="flex items-center gap-4">
                     <svg class="w-10 h-10 text-neon-blue/60 shrink-0" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path id="svgPreviewPath" d="<?= !$isImage ? htmlspecialchars($iconPath) : '' ?>"/></svg>
-                    <span class="text-gray-600 text-xs">Pratinjau ikon.</span>
+                    <span class="text-gray-600 text-xs">Icon preview.</span>
                 </div>
             </div>
         </div>
@@ -238,7 +238,7 @@ require_once __DIR__ . '/header.php';
                 <input type="url" name="demo_url" maxlength="500"
                        value="<?= htmlspecialchars($project['demo_url'] ?? '') ?>"
                        class="input-field-admin w-full rounded-lg px-4 py-3 text-white placeholder-gray-600"
-                       placeholder="https://contoh.com/">
+                       placeholder="https://example.com/">
             </div>
             <div>
                 <label class="block text-gray-400 text-sm font-medium mb-2">Source URL</label>
@@ -251,10 +251,10 @@ require_once __DIR__ . '/header.php';
 
         <div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-neon-blue/10">
             <button type="submit" class="neon-btn flex-1 px-6 py-3 rounded-lg font-orbitron text-sm font-semibold tracking-widest uppercase text-neon-blue border border-neon-blue/30">
-                <?= $editId ? 'Simpan Perubahan' : 'Tambah Project' ?>
+                <?= $editId ? 'Save Changes' : 'Add Project' ?>
             </button>
             <a href="projects" class="flex-1 px-6 py-3 rounded-lg border border-neon-blue/10 text-gray-400 hover:text-neon-blue transition-colors text-center font-orbitron text-sm font-semibold tracking-widest uppercase">
-                Batal
+                Cancel
             </a>
         </div>
     </form>
@@ -287,7 +287,7 @@ require_once __DIR__ . '/header.php';
     });
     fileInput.addEventListener('change', function () {
         if (fileInput.files.length > 0) {
-            fileName.textContent = 'Dipilih: ' + fileInput.files[0].name;
+            fileName.textContent = 'Selected: ' + fileInput.files[0].name;
             fileName.classList.remove('hidden');
         }
     });

@@ -47,14 +47,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errorUrl = $id > 0 ? "skill_form?id=$id&error=" : 'skill_form?error=';
 
     if ($name === '') {
-        header('Location: ' . $errorUrl . urlencode('Nama skill wajib diisi.'));
+        header('Location: ' . $errorUrl . urlencode('Skill name is required.'));
         exit;
     }
 
     if (!empty($_FILES['icon_image']['name'])) {
         $uploaded = upload_skill_image($_FILES['icon_image']);
         if ($uploaded === '') {
-            header('Location: ' . $errorUrl . urlencode('Gagal mengupload gambar. Format harus jpg/png/gif/webp/svg dan maks 2MB.'));
+            header('Location: ' . $errorUrl . urlencode('Failed to upload image. Format must be jpg/png/gif/webp/svg and max 2MB.'));
             exit;
         }
         $icon = $uploaded;
@@ -78,8 +78,8 @@ require_once __DIR__ . '/header.php';
 ?>
 
 <div class="mb-8">
-    <h1 class="font-orbitron text-2xl md:text-3xl font-bold text-white mb-2"><?= $editId ? 'Edit Skill' : 'Tambah Skill' ?></h1>
-    <p class="text-gray-500 text-sm"><?= $editId ? 'Perbarui detail skill di bawah ini.' : 'Isi detail skill baru.' ?></p>
+    <h1 class="font-orbitron text-2xl md:text-3xl font-bold text-white mb-2"><?= $editId ? 'Edit Skill' : 'Add Skill' ?></h1>
+    <p class="text-gray-500 text-sm"><?= $editId ? 'Update the skill details below.' : 'Fill in the new skill details.' ?></p>
 </div>
 
 <?php if (isset($_GET['error']) && $_GET['error'] !== ''): ?>
@@ -93,11 +93,11 @@ require_once __DIR__ . '/header.php';
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <label class="block text-gray-400 text-sm font-medium mb-2">Nama Skill *</label>
+                <label class="block text-gray-400 text-sm font-medium mb-2">Skill Name *</label>
                 <input type="text" name="name" required maxlength="255"
                        value="<?= htmlspecialchars($skill['name'] ?? '') ?>"
                        class="input-field-admin w-full rounded-lg px-4 py-3 text-white placeholder-gray-600"
-                       placeholder="Contoh: JavaScript">
+                       placeholder="e.g. JavaScript">
             </div>
             <div>
                 <label class="block text-gray-400 text-sm font-medium mb-2">Level (0-100%)</label>
@@ -108,7 +108,7 @@ require_once __DIR__ . '/header.php';
         </div>
 
         <div>
-            <label class="block text-gray-400 text-sm font-medium mb-2">Ikon / Logo</label>
+            <label class="block text-gray-400 text-sm font-medium mb-2">Icon / Logo</label>
             <div class="flex items-center gap-4 mb-3">
                 <?php if (!empty($skill['icon'])): ?>
                     <img src="../<?= htmlspecialchars($skill['icon']) ?>" alt="" class="w-12 h-12 object-contain border border-neon-blue/10 rounded-lg p-1 bg-nightwing-900/40">
@@ -121,9 +121,9 @@ require_once __DIR__ . '/header.php';
             <label class="flex flex-col items-center justify-center w-full h-32 rounded-xl border-2 border-dashed border-neon-blue/20 hover:border-neon-blue/40 transition-colors cursor-pointer bg-nightwing-900/40">
                 <input type="file" name="icon_image" accept=".jpg,.jpeg,.png,.gif,.webp,.svg" class="hidden">
                 <svg class="w-7 h-7 text-neon-blue/50 mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>
-                <span class="text-gray-500 text-sm">Upload gambar logo (jpg, png, svg - maks 2MB)</span>
+                <span class="text-gray-500 text-sm">Upload logo image (jpg, png, svg - max 2MB)</span>
             </label>
-            <p class="text-gray-700 text-xs mt-2">Atau isi kolom di atas dengan path gambar/ikon yang sudah ada.</p>
+            <p class="text-gray-700 text-xs mt-2">Or enter an existing image/icon path in the field above.</p>
         </div>
 
         <div>
@@ -131,15 +131,15 @@ require_once __DIR__ . '/header.php';
             <input type="number" name="sort_order" min="0"
                    value="<?= (int)($skill['sort_order'] ?? 0) ?>"
                    class="input-field-admin w-full rounded-lg px-4 py-3 text-white placeholder-gray-600">
-            <p class="text-gray-700 text-xs mt-1">Angka kecil tampil lebih dulu.</p>
+            <p class="text-gray-700 text-xs mt-1">Lower numbers appear first.</p>
         </div>
 
         <div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-neon-blue/10">
             <button type="submit" class="neon-btn flex-1 px-6 py-3 rounded-lg font-orbitron text-sm font-semibold tracking-widest uppercase text-neon-blue border border-neon-blue/30">
-                <?= $editId ? 'Simpan Perubahan' : 'Tambah Skill' ?>
+                <?= $editId ? 'Save Changes' : 'Add Skill' ?>
             </button>
             <a href="skills" class="flex-1 px-6 py-3 rounded-lg border border-neon-blue/10 text-gray-400 hover:text-neon-blue transition-colors text-center font-orbitron text-sm font-semibold tracking-widest uppercase">
-                Batal
+                Cancel
             </a>
         </div>
     </form>

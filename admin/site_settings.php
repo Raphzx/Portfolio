@@ -30,25 +30,25 @@ require_once __DIR__ . '/header.php';
 ?>
 
 <div class="mb-8">
-    <h1 class="font-orbitron text-2xl md:text-3xl font-bold text-white mb-2">Pengaturan Situs</h1>
-    <p class="text-gray-500 text-sm">Kelola informasi umum portfolio Anda.</p>
+    <h1 class="font-orbitron text-2xl md:text-3xl font-bold text-white mb-2">Site Settings</h1>
+    <p class="text-gray-500 text-sm">Manage your portfolio general information.</p>
 </div>
 
 <?php if (isset($_GET['saved'])): ?>
-    <div class="mb-6 px-4 py-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm">Pengaturan berhasil disimpan.</div>
+    <div class="mb-6 px-4 py-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm">Settings saved successfully.</div>
 <?php endif; ?>
 
-<div class="glass-card rounded-2xl p-6 md:p-8 max-w-3xl">
+<div class="glass-card rounded-2xl p-6 md:p-8 max-w-5xl">
     <form method="POST" action="" class="space-y-6">
         <?= csrf_field() ?>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <label class="block text-gray-400 text-sm font-medium mb-2">Judul Situs *</label>
+                <label class="block text-gray-400 text-sm font-medium mb-2">Site Title *</label>
                 <input type="text" name="title" required maxlength="255"
                        value="<?= htmlspecialchars($site['title']) ?>"
                        class="input-field-admin w-full rounded-lg px-4 py-3 text-white placeholder-gray-600"
-                       placeholder="Nama Portfolio">
+                       placeholder="Portfolio Name">
             </div>
             <div>
                 <label class="block text-gray-400 text-sm font-medium mb-2">Tagline</label>
@@ -60,15 +60,15 @@ require_once __DIR__ . '/header.php';
         </div>
 
         <div>
-            <label class="block text-gray-400 text-sm font-medium mb-2">Deskripsi</label>
+            <label class="block text-gray-400 text-sm font-medium mb-2">Description</label>
             <textarea name="description" rows="3"
                       class="input-field-admin w-full rounded-lg px-4 py-3 text-white placeholder-gray-600 resize-none"
-                      placeholder="Deskripsi singkat untuk SEO"><?= htmlspecialchars($site['description']) ?></textarea>
+                      placeholder="Short description for SEO"><?= htmlspecialchars($site['description']) ?></textarea>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-                <label class="block text-gray-400 text-sm font-medium mb-2">Penulis</label>
+                <label class="block text-gray-400 text-sm font-medium mb-2">Author</label>
                 <input type="text" name="author" maxlength="255"
                        value="<?= htmlspecialchars($site['author']) ?>"
                        class="input-field-admin w-full rounded-lg px-4 py-3 text-white placeholder-gray-600">
@@ -80,7 +80,7 @@ require_once __DIR__ . '/header.php';
                        class="input-field-admin w-full rounded-lg px-4 py-3 text-white placeholder-gray-600">
             </div>
             <div>
-                <label class="block text-gray-400 text-sm font-medium mb-2">Lokasi</label>
+                <label class="block text-gray-400 text-sm font-medium mb-2">Location</label>
                 <input type="text" name="location" maxlength="255"
                        value="<?= htmlspecialchars($site['location']) ?>"
                        class="input-field-admin w-full rounded-lg px-4 py-3 text-white placeholder-gray-600">
@@ -89,10 +89,10 @@ require_once __DIR__ . '/header.php';
 
         <div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-neon-blue/10">
             <button type="submit" class="neon-btn flex-1 px-6 py-3 rounded-lg font-orbitron text-sm font-semibold tracking-widest uppercase text-neon-blue border border-neon-blue/30">
-                Simpan Pengaturan
+                Save Settings
             </button>
             <a href="./" class="flex-1 px-6 py-3 rounded-lg border border-neon-blue/10 text-gray-400 hover:text-neon-blue transition-colors text-center font-orbitron text-sm font-semibold tracking-widest uppercase">
-                Kembali
+                Back
             </a>
         </div>
     </form>
